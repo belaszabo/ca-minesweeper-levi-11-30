@@ -7,10 +7,10 @@ def init_map(size):
     return [[{'isMine': False, 'isChecked': False} for _ in range(SIZE)] for _ in range(SIZE)]
 
 def init_mines(grid, max_mines):
-    row = random.randint(0, len(grid) - 1)
-    col = random.randint(0, len(grid) - 1)
-    print(row, col)
-    grid[row][col]['isMine'] = True
+    for _ in range(max_mines):
+      row = random.randint(0, len(grid) - 1)
+      col = random.randint(0, len(grid) - 1)
+      grid[row][col]['isMine'] = True
 
 def draw(grid):
     for row in grid:
@@ -42,5 +42,6 @@ def start_game():
       is_live = check(grid, row, col)
       clear()
       draw(grid)
+    print('Game Over!')
 
 start_game()
