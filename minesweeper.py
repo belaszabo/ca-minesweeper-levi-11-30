@@ -1,3 +1,5 @@
+import os
+
 SIZE = 10
 
 def init_map(size):
@@ -9,4 +11,24 @@ def draw(grid):
         print("[ ]" if field['isChecked'] else "[?]", end="")
       print()
 
-grid = init_map(SIZE)
+def check(grid, row, col):
+    grid[row][col]['isChecked'] = True
+
+clear = lambda: os.system('clear')
+
+def get_row_and_col():
+    fieldToCheck = input("Which field: ")
+    row, col = fieldToCheck.split()
+    row, col = int(row) - 1, int(col) - 1
+    return row, col
+
+def start_game():
+    grid = init_map(SIZE)
+    draw(grid)
+    while True:
+      row, col = get_row_and_col()
+      check(grid, row, col)
+      clear()
+      draw(grid)
+
+start_game()
